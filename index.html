@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPI Phòng Tự Động Hóa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="process-style.css">
+</head>
+<body>
+    <header>
+        <img src="Avatar/Logo2026_xoanen.png" alt="MACH VIET CNC Logo" class="header-logo">
+        <h1>KPI Phòng Tự Động Hóa - MACH VIET CNC</h1>
+        <p>Quản lý và theo dõi KPI của các thành viên</p>
+        <div class="header-buttons">
+            <button id="view-all-kpi-btn" class="admin-btn">Xem tất cả KPI</button>
+            <button id="manage-task-btn" class="admin-btn" style="display: none;">Quản lý Task</button>
+            <button id="evaluate-kpi-btn" class="admin-btn" style="display: none;">Đánh giá KPI</button>
+            <button id="quy-trinh-btn" class="admin-btn">Quy trình</button>
+            <button id="login-btn" class="admin-btn">Đăng nhập</button>
+            <button id="logout-btn" class="admin-btn" style="display: none;">Đăng xuất</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="members">
+            <h2>Danh sách thành viên</h2>
+            <div class="member-grid">
+                <div class="member-card" data-member="1">
+                    <img src="Avatar/LeVanThai.jpg" alt="Ảnh đại diện">
+                    <h3>Lê Văn Thái</h3>
+                    <p>Chức vụ: Trưởng phòng</p>
+                    <button class="kpi-btn">Xem KPI</button>
+                </div>
+                <div class="member-card" data-member="2">
+                    <img src="Avatar/LeQuocViet.jpg" alt="Ảnh đại diện">
+                    <h3>Lê Quốc Việt</h3>
+                    <p>Chức vụ: Nhân viên kỹ thuật</p>
+                    <button class="kpi-btn">Xem KPI</button>
+                </div>
+                <div class="member-card" data-member="3">
+                    <img src="Avatar/NguyenTienDuong.jpg" alt="Ảnh đại diện">
+                    <h3>Nguyễn Tiến Dương</h3>
+                    <p>Chức vụ: Nhân viên kỹ thuật</p>
+                    <button class="kpi-btn">Xem KPI</button>
+                </div>
+                <div class="member-card" data-member="4">
+                    <img src="Avatar/BuiDacNgoc.jpg" alt="Ảnh đại diện">
+                    <h3>Bùi Đắc Ngọc</h3>
+                    <p>Chức vụ: Nhân viên kỹ thuật</p>
+                    <button class="kpi-btn">Xem KPI</button>
+                </div>
+                <div class="member-card" data-member="5">
+                    <img src="Avatar/R&DMachDienTu.png" alt="Ảnh đại diện">
+                    <h3>R&D mạch điện tử</h3>
+                    <p>Chức vụ: Nhân viên kỹ thuật</p>
+                    <button class="kpi-btn">Xem KPI</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="quy-trinh-menu" id="quy-trinh-menu-section" style="display: none;">
+            <h2>Chọn Quy trình</h2>
+            <div class="quy-trinh-actions">
+                <button id="back-to-main-from-menu-btn" class="logout-btn">Quay lại trang chính</button>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-item" data-quy-trinh="trienkhai-duan">
+                    <h3>Quy trình triển khai dự án</h3>
+                    <p>Đảm bảo dự án tự động hóa được triển khai hiệu quả</p>
+                    <button class="menu-btn">Xem chi tiết</button>
+                </div>
+                <div class="menu-item" data-quy-trinh="phoihop-pkd">
+                    <h3>Quy trình phối hợp PKD</h3>
+                    <p>Tối ưu hóa quy trình sản xuất với Phòng Kỹ Thuật</p>
+                    <button class="menu-btn">Xem chi tiết</button>
+                </div>
+                <div class="menu-item" data-quy-trinh="xuly-baohanh">
+                    <h3>Quy trình xử lý hàng bảo hành</h3>
+                    <p>Xử lý nhanh chóng các vấn đề bảo hành</p>
+                    <button class="menu-btn">Xem chi tiết</button>
+                </div>
+                <div class="menu-item" data-quy-trinh="phoihop-muahang">
+                    <h3>Quy trình phối hợp Mua hàng</h3>
+                    <p>Đảm bảo cung ứng vật tư đúng thời điểm</p>
+                    <button class="menu-btn">Xem chi tiết</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="quy-trinh-detail" id="quy-trinh-detail-section" style="display: none;">
+            <h2 id="detail-title">Chi tiết Quy trình</h2>
+            <div class="quy-trinh-actions">
+                <button id="back-to-menu-btn" class="logout-btn">Quay lại menu</button>
+            </div>
+            <div id="quy-trinh-content">
+                <!-- Nội dung chi tiết quy trình sẽ được thêm vào đây -->
+            </div>
+        </section>
+
+        <section class="process-detail-page" id="project-process-page" style="display: none;">
+            <div class="process-container">
+                <div class="process-header-card">
+                    <span class="process-badge">Quy trình</span>
+                    <h1>Quy trình triển khai dự án</h1>
+                    <p class="process-goal">
+                        Mục tiêu: Đảm bảo dự án triển khai đúng tiến độ – đúng kỹ thuật – đúng chi phí
+                    </p>
+
+                    <div class="process-flow">
+                        <span>Nhận yêu cầu</span>
+                        <span>Khảo sát</span>
+                        <span>Giải pháp</span>
+                        <span>Báo giá</span>
+                        <span>Ký đơn</span>
+                        <span>Triển khai</span>
+                        <span>Test</span>
+                        <span>Bàn giao</span>
+                        <span>Support</span>
+                    </div>
+                </div>
+                <div id="project-stage-wrapper">
+
+                <div class="process-stage">
+                    <div class="stage-title">
+                        <h2>Giai đoạn 1: Tiền dự án (Pre-Sales)</h2>
+                        <p>Tiếp nhận yêu cầu, khảo sát và xây dựng phương án kỹ thuật trước khi triển khai.</p>
+                    </div>
+
+                    <div class="step-grid">
+                        <div class="step-card">
+                            <div class="step-number">Bước 1</div>
+                            <h3>Tiếp nhận yêu cầu</h3>
+                            <ul>
+                                <li>Xác định nhu cầu khách hàng</li>
+                                <li>Đánh giá mức độ phức tạp công việc</li>
+                                <li>Xác định có cần khảo sát hay không</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> Quyết định khảo sát hay không
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 2</div>
+                            <h3>Khảo sát (nếu cần)</h3>
+                            <ul>
+                                <li>Khảo sát máy móc</li>
+                                <li>Khảo sát quy trình</li>
+                                <li>Thu thập yêu cầu kỹ thuật</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> Báo cáo khảo sát, dữ liệu đầu vào
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 3</div>
+                            <h3>Đề xuất giải pháp kỹ thuật</h3>
+                            <ul>
+                                <li>Lên phương án PLC / HMI</li>
+                                <li>Đề xuất Servo / Robot / công nghệ phù hợp</li>
+                                <li>Định hướng giải pháp tổng thể</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> Phương án kỹ thuật
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 4</div>
+                            <h3>Lập BOM & dự toán</h3>
+                            <ul>
+                                <li>Lập danh sách vật tư</li>
+                                <li>Tính nhân công</li>
+                                <li>Ước tính thời gian triển khai</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> BOM, dự toán chi phí
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 5</div>
+                            <h3>Gửi Sale báo giá</h3>
+                            <ul>
+                                <li>Gửi BOM cho Sale</li>
+                                <li>Gửi giải pháp kỹ thuật</li>
+                                <li>Gửi các lưu ý kỹ thuật cần thiết</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> Sale báo giá khách hàng
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-stage">
+                    <div class="stage-title">
+                        <h2>Giai đoạn 2: Triển khai dự án</h2>
+                        <p>Tổ chức thực hiện, phân công, mua hàng, lập trình, đấu nối và kiểm tra nội bộ.</p>
+                    </div>
+
+                    <div class="step-grid">
+                        <div class="step-card">
+                            <div class="step-number">Bước 6</div>
+                            <h3>Kick-off dự án</h3>
+                            <ul>
+                                <li>Họp nội bộ phương án chi tiết</li>
+                                <li>Xác định timeline từng hạng mục</li>
+                                <li>Đánh giá rủi ro</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 7</div>
+                            <h3>Phân công nhân sự</h3>
+                            <ul>
+                                <li>Phân công lead kỹ thuật</li>
+                                <li>Phân công support</li>
+                                <li>Phân công đấu nối</li>
+                                <li>Phân công phụ trách vật tư</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 8</div>
+                            <h3>Mua hàng & chuẩn bị vật tư</h3>
+                            <ul>
+                                <li>Gửi list mua hàng</li>
+                                <li>Theo dõi leadtime</li>
+                                <li>Chuẩn bị vật tư đúng tiến độ</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 9</div>
+                            <h3>Triển khai kỹ thuật</h3>
+                            <ul>
+                                <li>Đấu nối</li>
+                                <li>Lập trình</li>
+                                <li>Lắp ráp</li>
+                                <li>Kiểm soát deadline từng hạng mục</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card warning-card">
+                            <div class="step-number">Bước 10</div>
+                            <h3>Kiểm tra nội bộ</h3>
+                            <ul>
+                                <li>Test IO</li>
+                                <li>Test Auto / Manual</li>
+                                <li>Test lỗi</li>
+                                <li>Backup code</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Lưu ý:</strong> Không đạt thì không chuyển bước
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-stage">
+                    <div class="stage-title">
+                        <h2>Giai đoạn 3: Bàn giao</h2>
+                        <p>Hoàn thiện lắp đặt, bàn giao khách hàng, support và tổng kết cải tiến.</p>
+                    </div>
+
+                    <div class="step-grid">
+                        <div class="step-card">
+                            <div class="step-number">Bước 11</div>
+                            <h3>Lắp đặt, vận hành tại hiện trường + bàn giao</h3>
+                            <ul>
+                                <li>Chạy thử tại hiện trường</li>
+                                <li>Bàn giao thiết bị</li>
+                                <li>Hướng dẫn vận hành</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Kết quả:</strong> Biên bản bàn giao
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">Bước 12</div>
+                            <h3>Support & bảo hành</h3>
+                            <ul>
+                                <li>Support kỹ thuật</li>
+                                <li>Xử lý lỗi phát sinh</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card highlight-card">
+                            <div class="step-number">Bước 13</div>
+                            <h3>Tổng kết + Đánh giá dự án</h3>
+                            <ul>
+                                <li>Review tiến độ</li>
+                                <li>Review lỗi</li>
+                                <li>Đánh giá chi phí phát sinh thực tế</li>
+                            </ul>
+                            <div class="step-result">
+                                <strong>Ý nghĩa:</strong> Đây là chỗ để cải tiến KPI
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                <div class="process-footer">
+                    <button id="back-to-menu-from-process-btn" class="logout-btn">Quay lại menu</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="kpi-tabs" id="kpi-tabs" style="display: none;">
+            <h2>KPI Chi tiết</h2>
+            <div class="kpi-actions">
+                <button id="logout-btn" class="logout-btn">Xem thành viên khác</button>
+            </div>
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="1">Lê Văn Thái</button>
+                <button class="tab-btn" data-tab="2">Lê Quốc Việt</button>
+                <button class="tab-btn" data-tab="3">Nguyễn Tiến Dương</button>
+                <button class="tab-btn" data-tab="4">Bùi Đắc Ngọc</button>
+                <button class="tab-btn" data-tab="5">R&D mạch điện tử</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab-1">
+                    <h3>KPI của Lê Văn Thái</h3>
+                    <p>Điểm KPI: 85/100</p>
+                    <div class="kpi-description">
+                        <strong>Mô tả công việc:</strong>
+                        <ul>
+                            <li>Quản lý dự án tự động hóa</li>
+                            <li>Điều phối nhóm kỹ thuật</li>
+                            <li>Giám sát tiến độ và chất lượng</li>
+                        </ul>
+                    </div>
+                    <ul>
+                        <li>Hoàn thành dự án: 90%</li>
+                        <li>Chất lượng công việc: 80%</li>
+                        <li>Hiệu suất: 85%</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tab-2">
+                    <h3>KPI của Lê Quốc Việt</h3>
+                    <p>Điểm KPI: 88/100</p>
+                    <p class="kpi-description"><strong>Mô tả công việc:</strong> Thiết kế hệ thống tự động hóa, lập trình PLC và tích hợp thiết bị trong dây chuyền sản xuất.</p>
+                    <ul>
+                        <li>Hoàn thành dự án: 95%</li>
+                        <li>Chất lượng công việc: 85%</li>
+                        <li>Hiệu suất: 88%</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tab-3">
+                    <h3>KPI của Nguyễn Tiến Dương</h3>
+                    <p>Điểm KPI: 92/100</p>
+                    <p class="kpi-description"><strong>Mô tả công việc:</strong> Giám sát kỹ thuật, lập kế hoạch dự án và phối hợp với các bộ phận để đảm bảo tiến độ đúng yêu cầu.</p>
+                    <ul>
+                        <li>Hoàn thành dự án: 98%</li>
+                        <li>Chất lượng công việc: 90%</li>
+                        <li>Hiệu suất: 92%</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tab-4">
+                    <h3>KPI của Bùi Đắc Ngọc</h3>
+                    <p>Điểm KPI: 87/100</p>
+                    <p class="kpi-description"><strong>Mô tả công việc:</strong> Phát triển phần mềm điều khiển, kiểm tra chạy thử và bảo trì chương trình cho hệ thống tự động hóa.</p>
+                    <ul>
+                        <li>Hoàn thành dự án: 92%</li>
+                        <li>Chất lượng công việc: 82%</li>
+                        <li>Hiệu suất: 87%</li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tab-5">
+                    <h3>KPI của R&D mạch điện tử</h3>
+                    <p>Điểm KPI: 90/100</p>
+                    <p class="kpi-description"><strong>Mô tả công việc:</strong> Nghiên cứu và phát triển mạch điện tử, tối ưu hóa thiết kế PCB và kiểm tra chức năng linh kiện.</p>
+                    <ul>
+                        <li>Hoàn thành dự án: 96%</li>
+                        <li>Chất lượng công việc: 88%</li>
+                        <li>Hiệu suất: 90%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task Management Section (ẩn mặc định) -->
+        <section class="task-management" id="task-management" style="display: none;">
+            <h2>Quản lý Task</h2>
+            
+            <!-- Task Controls (chỉ admin thấy) -->
+            <div class="task-controls" id="task-controls" style="display: none;">
+                <button id="add-task-btn" class="kpi-btn">Thêm Task Mới</button>
+                <div class="task-filters">
+                    <select id="filter-employee">
+                        <option value="">Tất cả nhân viên</option>
+                        <option value="Lê Văn Thái">Lê Văn Thái</option>
+                        <option value="Lê Quốc Việt">Lê Quốc Việt</option>
+                        <option value="Nguyễn Tiến Dương">Nguyễn Tiến Dương</option>
+                        <option value="Bùi Đắc Ngọc">Bùi Đắc Ngọc</option>
+                        <option value="R&D mạch điện tử">R&D mạch điện tử</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="not-started">Chưa làm</option>
+                        <option value="in-progress">Đang làm</option>
+                        <option value="completed">Hoàn thành</option>
+                        <option value="overdue">Trễ hạn</option>
+                    </select>
+                    <input type="text" id="search-task" placeholder="Tìm kiếm theo tiêu đề...">
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list" id="task-list">
+                <!-- Tasks sẽ được render bằng JS -->
+            </div>
+        </section>
+
+        <!-- KPI Evaluation Section (ẩn mặc định) -->
+        <section class="kpi-evaluation" id="kpi-evaluation" style="display: none;">
+            <h2>Đánh giá KPI theo tháng</h2>
+            
+            <!-- Evaluation Controls -->
+            <div class="evaluation-controls">
+                <div class="control-group">
+                    <label for="eval-employee">Chọn nhân viên:</label>
+                    <select id="eval-employee">
+                        <option value="Lê Văn Thái">Lê Văn Thái</option>
+                        <option value="Lê Quốc Việt">Lê Quốc Việt</option>
+                        <option value="Nguyễn Tiến Dương">Nguyễn Tiến Dương</option>
+                        <option value="Bùi Đắc Ngọc">Bùi Đắc Ngọc</option>
+                        <option value="R&D mạch điện tử">R&D mạch điện tử</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="eval-month">Chọn tháng:</label>
+                    <select id="eval-month">
+                        <option value="2026-01">Tháng 1/2026</option>
+                        <option value="2026-02">Tháng 2/2026</option>
+                        <option value="2026-03">Tháng 3/2026</option>
+                        <option value="2026-04" selected>Tháng 4/2026</option>
+                        <option value="2026-05">Tháng 5/2026</option>
+                        <option value="2026-06">Tháng 6/2026</option>
+                        <option value="2026-07">Tháng 7/2026</option>
+                        <option value="2026-08">Tháng 8/2026</option>
+                        <option value="2026-09">Tháng 9/2026</option>
+                        <option value="2026-10">Tháng 10/2026</option>
+                        <option value="2026-11">Tháng 11/2026</option>
+                        <option value="2026-12">Tháng 12/2026</option>
+                    </select>
+                </div>
+                <button id="load-evaluation-btn" class="btn btn-primary">Tải đánh giá</button>
+            </div>
+
+            <!-- KPI 1: Hoàn thành công việc đúng hạn (40%) -->
+            <div class="kpi-section" id="kpi1-section">
+                <h3>KPI 1: Hoàn thành công việc đúng hạn (40%)</h3>
+                <div class="kpi-auto-calc">
+                    <p><strong>Tự động tính từ task:</strong></p>
+                    <div id="kpi1-tasks-summary">
+                        <!-- Task summary sẽ được render ở đây -->
+                    </div>
+                    <div class="kpi-result">
+                        <span>Tỷ lệ đúng hạn: <strong id="kpi1-rate">0%</strong></span>
+                        <span>Điểm KPI 1: <strong id="kpi1-score">0/100</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI 2: Chất lượng công việc (25%) -->
+            <div class="kpi-section" id="kpi2-section">
+                <h3>KPI 2: Chất lượng công việc (25%)</h3>
+                <div class="kpi-inputs">
+                    <div class="input-row">
+                        <label>Số lỗi lớn:</label>
+                        <input type="number" id="kpi2-major-errors" min="0" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Số lỗi nhỏ:</label>
+                        <input type="number" id="kpi2-minor-errors" min="0" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Lỗi phải sửa lại:</label>
+                        <input type="number" id="kpi2-rework-errors" min="0" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Phản hồi khách hàng (1-5):</label>
+                        <input type="number" id="kpi2-customer-feedback" min="1" max="5" value="3">
+                    </div>
+                    <div class="kpi-result">
+                        <span>Điểm KPI 2: <strong id="kpi2-score">0/100</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI 3: Hỗ trợ kỹ thuật (15%) -->
+            <div class="kpi-section" id="kpi3-section">
+                <h3>KPI 3: Hỗ trợ kỹ thuật (15%)</h3>
+                <div class="kpi-inputs">
+                    <div class="input-row">
+                        <label>Số case hỗ trợ:</label>
+                        <input type="number" id="kpi3-support-cases" min="0" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Thời gian phản hồi trung bình (giờ):</label>
+                        <input type="number" id="kpi3-response-time" min="0" step="0.1" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Tỷ lệ xử lý thành công (%):</label>
+                        <input type="number" id="kpi3-success-rate" min="0" max="100" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Đánh giá từ sale/khách hàng (1-5):</label>
+                        <input type="number" id="kpi3-rating" min="1" max="5" value="3">
+                    </div>
+                    <div class="kpi-result">
+                        <span>Điểm KPI 3: <strong id="kpi3-score">0/100</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI 4: Tuân thủ nội quy và báo cáo (10%) -->
+            <div class="kpi-section" id="kpi4-section">
+                <h3>KPI 4: Tuân thủ nội quy và báo cáo (10%)</h3>
+                <div class="kpi-checklist">
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="kpi4-report-timely" checked>
+                        <label for="kpi4-report-timely">Nộp báo cáo đúng hạn</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="kpi4-5s-compliance" checked>
+                        <label for="kpi4-5s-compliance">Tuân thủ 5S</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="kpi4-company-rules" checked>
+                        <label for="kpi4-company-rules">Tuân thủ nội quy công ty</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="kpi4-safety-rules" checked>
+                        <label for="kpi4-safety-rules">Tuân thủ quy định an toàn</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="kpi4-attendance" checked>
+                        <label for="kpi4-attendance">Điểm danh đúng giờ</label>
+                    </div>
+                    <div class="kpi-result">
+                        <span>Điểm KPI 4: <strong id="kpi4-score">0/100</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI 5: Phát triển năng lực (10%) -->
+            <div class="kpi-section" id="kpi5-section">
+                <h3>KPI 5: Phát triển năng lực (10%)</h3>
+                <div class="kpi-inputs">
+                    <div class="input-row">
+                        <label>Điểm đánh giá (0-100):</label>
+                        <input type="number" id="kpi5-score-input" min="0" max="100" value="0">
+                    </div>
+                    <div class="input-row">
+                        <label>Ghi chú đánh giá:</label>
+                        <textarea id="kpi5-notes" rows="3" placeholder="Nhập ghi chú về phát triển năng lực..."></textarea>
+                    </div>
+                    <div class="kpi-result">
+                        <span>Điểm KPI 5: <strong id="kpi5-score">0/100</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evaluation Summary -->
+            <div class="evaluation-summary">
+                <h3>Tổng hợp đánh giá tháng</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span>KPI 1 (40%):</span>
+                        <strong id="summary-kpi1">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>KPI 2 (25%):</span>
+                        <strong id="summary-kpi2">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>KPI 3 (15%):</span>
+                        <strong id="summary-kpi3">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>KPI 4 (10%):</span>
+                        <strong id="summary-kpi4">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>KPI 5 (10%):</span>
+                        <strong id="summary-kpi5">0</strong>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Tổng điểm tháng:</span>
+                        <strong id="summary-total">0/100</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span>Mức lương KPI:</span>
+                        <strong id="summary-salary">0 VND</strong>
+                    </div>
+                </div>
+                <div class="evaluation-actions">
+                    <button id="save-draft-btn" class="btn btn-secondary">Lưu nháp</button>
+                    <button id="finalize-evaluation-btn" class="btn btn-primary">Chốt kỳ đánh giá</button>
+                    <span id="evaluation-status" class="status-draft">Trạng thái: Nháp</span>
+                </div>
+            </div>
+        </section>
+        <div id="task-modal" class="modal">
+            <div class="modal-content task-modal-content">
+                <span class="close" id="task-modal-close">&times;</span>
+                <h2 id="task-modal-title">Thêm Task Mới</h2>
+                
+                <form id="task-form">
+                    <input type="hidden" id="task-id">
+                    <div class="form-group">
+                        <label for="task-title">Tiêu đề công việc:</label>
+                        <input type="text" id="task-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-description">Mô tả công việc:</label>
+                        <textarea id="task-description" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-assigned-to">Người được giao:</label>
+                        <select id="task-assigned-to" required>
+                            <option value="Lê Văn Thái">Lê Văn Thái</option>
+                            <option value="Lê Quốc Việt">Lê Quốc Việt</option>
+                            <option value="Nguyễn Tiến Dương">Nguyễn Tiến Dương</option>
+                            <option value="Bùi Đắc Ngọc">Bùi Đắc Ngọc</option>
+                            <option value="R&D mạch điện tử">R&D mạch điện tử</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-due-date">Hạn hoàn thành:</label>
+                        <input type="date" id="task-due-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-priority">Mức ưu tiên:</label>
+                        <select id="task-priority">
+                            <option value="low">Thấp</option>
+                            <option value="medium">Trung bình</option>
+                            <option value="high">Cao</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-status">Trạng thái:</label>
+                        <select id="task-status">
+                            <option value="not-started">Chưa bắt đầu</option>
+                            <option value="in-progress">Đang thực hiện</option>
+                            <option value="completed">Hoàn thành</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button type="submit" id="task-submit-btn">Lưu</button>
+                        <button type="button" id="task-cancel-btn">Hủy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="login-modal-close">&times;</span>
+                <h2>Đăng nhập</h2>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Tên đăng nhập:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    
+                    <div class="modal-buttons">
+                        <button type="submit">Đăng nhập</button>
+                        <button type="button" id="login-cancel-btn">Hủy</button>
+                    </div>
+                    
+                    <p id="login-error" style="color: red; display: none;">Tên đăng nhập hoặc mật khẩu không đúng!</p>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal nhập mật khẩu -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Nhập mật khẩu để xem KPI</h2>
+            <p id="modal-member">Thành viên: Nguyễn Văn A</p>
+            <input type="password" id="password-input" placeholder="Nhập mật khẩu">
+            <div class="modal-buttons">
+                <button id="submit-password">Xác nhận</button>
+                <button id="cancel-password">Hủy</button>
+            </div>
+            <p id="error-message" style="color: red; display: none;">Mật khẩu không đúng!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MACH VIET CNC - Phòng Tự Động Hóa</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

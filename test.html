@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test KPI Evaluation System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+        .btn { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .btn-primary { background: #007bff; color: white; border: none; }
+        .btn-secondary { background: #6c757d; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Test KPI Evaluation System</h1>
+
+    <div class="test-section">
+        <h2>Login Test</h2>
+        <button class="btn btn-primary" onclick="testLogin()">Test Admin Login</button>
+        <div id="login-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Task Creation Test</h2>
+        <button class="btn btn-primary" onclick="testCreateTask()">Create Sample Tasks</button>
+        <div id="task-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>KPI Evaluation Test</h2>
+        <button class="btn btn-primary" onclick="testKPIEvaluation()">Test KPI Calculation</button>
+        <button class="btn btn-secondary" onclick="testSaveEvaluation()">Test Save Evaluation</button>
+        <div id="kpi-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Data Inspection</h2>
+        <button class="btn btn-primary" onclick="showLocalStorage()">Show LocalStorage Data</button>
+        <pre id="data-display"></pre>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function testLogin() {
+            const result = document.getElementById('login-result');
+            try {
+                // Simulate admin login
+                taskManager.currentUser = { username: 'admin', name: 'Test Admin', role: 'admin' };
+                taskManager.isAdmin = true;
+                taskManager.updateUI();
+                result.innerHTML = '<p style="color: green;">✓ Admin login test passed</p>';
+            } catch (error) {
+                result.innerHTML = '<p style="color: red;">✗ Login test failed: ' + error.message + '</p>';
+            }
+        }
+
+        function testCreateTask() {
+            const result = document.getElementById('task-result');
+            try {
+                const sampleTasks = [
+                    {
+                        id: 'task-1',
+                        title: 'Thiết kế mạch điều khiển PLC',
+                        description: 'Thiết kế mạch điều khiển cho hệ thống PLC mới',
+                        priority: 'high',
+                        assignedTo: 'Lê Văn Thái',
+                        dueDate: '2026-04-30',
+                        status: 'completed',
+                        createdBy: 'admin',
+                        createdAt: '2026-04-01T00:00:00.000Z',
+                        updatedAt: '2026-04-25T00:00:00.000Z'
+                    },
+                    {
+                        id: 'task-2',
+                        title: 'Kiểm tra chất lượng sản phẩm',
+                        description: 'Kiểm tra và đánh giá chất lượng sản phẩm đầu ra',
+                        priority: 'medium',
+                        assignedTo: 'Lê Văn Thái',
+                        dueDate: '2026-04-15',
+                        status: 'completed',
+                        createdBy: 'admin',
+                        createdAt: '2026-04-01T00:00:00.000Z',
+                        updatedAt: '2026-04-10T00:00:00.000Z'
+                    },
+                    {
+                        id: 'task-3',
+                        title: 'Hỗ trợ kỹ thuật khách hàng',
+                        description: 'Giải quyết vấn đề kỹ thuật cho khách hàng ABC',
+                        priority: 'low',
+                        assignedTo: 'Lê Văn Thái',
+                        dueDate: '2026-04-20',
+                        status: 'in-progress',
+                        createdBy: 'admin',
+                        createdAt: '2026-04-01T00:00:00.000Z',
+                        updatedAt: '2026-04-15T00:00:00.000Z'
+                    }
+                ];
+
+                sampleTasks.forEach(task => {
+                    const existingIndex = taskManager.tasks.findIndex(t => t.id === task.id);
+                    if (existingIndex >= 0) {
+                        taskManager.tasks[existingIndex] = task;
+                    } else {
+                        taskManager.tasks.push(task);
+                    }
+                });
+
+                taskManager.saveTasks();
+                result.innerHTML = '<p style="color: green;">✓ Sample tasks created successfully</p>';
+            } catch (error) {
+                result.innerHTML = '<p style="color: red;">✗ Task creation failed: ' + error.message + '</p>';
+            }
+        }
+
+        function testKPIEvaluation() {
+            const result = document.getElementById('kpi-result');
+            try {
+                // Set evaluation parameters
+                kpiManager.evalEmployee.value = 'Lê Văn Thái';
+                kpiManager.evalMonth.value = '2026-04';
+
+                // Load evaluation (should create new one)
+                kpiManager.loadEvaluation();
+
+                // Simulate KPI 2 input
+                kpiManager.kpi2MajorErrors.value = 1;
+                kpiManager.kpi2MinorErrors.value = 2;
+                kpiManager.kpi2CustomerFeedback.value = 4;
+
+                // Simulate KPI 3 input
+                kpiManager.kpi3SupportCases.value = 5;
+                kpiManager.kpi3ResponseTime.value = 1.5;
+                kpiManager.kpi3SuccessRate.value = 95;
+                kpiManager.kpi3Rating.value = 4;
+
+                // Simulate KPI 5 input
+                kpiManager.kpi5ScoreInput.value = 85;
+                kpiManager.kpi5Notes.value = 'Hoạt động tốt, có tinh thần học hỏi';
+
+                // Trigger calculations
+                kpiManager.calculateKPI1();
+                kpiManager.calculateKPI2();
+                kpiManager.calculateKPI3();
+                kpiManager.calculateKPI4();
+                kpiManager.calculateKPI5();
+
+                result.innerHTML = '<p style="color: green;">✓ KPI calculations completed</p>';
+            } catch (error) {
+                result.innerHTML = '<p style="color: red;">✗ KPI evaluation test failed: ' + error.message + '</p>';
+            }
+        }
+
+        function testSaveEvaluation() {
+            const result = document.getElementById('kpi-result');
+            try {
+                kpiManager.saveEvaluation(false); // Save as draft
+                result.innerHTML += '<p style="color: green;">✓ Evaluation saved as draft</p>';
+            } catch (error) {
+                result.innerHTML += '<p style="color: red;">✗ Save evaluation failed: ' + error.message + '</p>';
+            }
+        }
+
+        function showLocalStorage() {
+            const display = document.getElementById('data-display');
+            const data = {
+                tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
+                evaluations: JSON.parse(localStorage.getItem('kpiEvaluations') || '[]')
+            };
+            display.textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
