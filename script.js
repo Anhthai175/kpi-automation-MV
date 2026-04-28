@@ -144,48 +144,261 @@ const quyTrinhData = {
         ]
     },
     "xuly-baohanh": {
-        title: "Quy trình xử lý hàng bảo hành",
-        mucTieu: "Xử lý nhanh chóng và hiệu quả các vấn đề bảo hành, đảm bảo sự hài lòng của khách hàng.",
-        tongQuanFlow: "Tiếp nhận → Chẩn đoán → Sửa chữa → Kiểm tra → Bàn giao",
+        title: "XỬ LÝ HÀNG BẢO HÀNH",
+        mucTieu: [
+            "Xử lý nhanh các vấn đề bảo hành.",
+            "Giảm thời gian downtime của khách hàng.",
+            "Đảm bảo chất lượng dịch vụ sau bán hàng.",
+            "Tăng sự hài lòng của khách hàng."
+        ],
+        tongQuanFlow: "Tiếp nhận yêu cầu → Kiểm tra thông tin → Chẩn đoán lỗi → Quyết định xử lý → Sửa chữa / thay thế → Test lại → Trả hàng → Theo dõi sau bảo hành",
         giaiDoan: [
-            "Tiếp nhận yêu cầu bảo hành",
-            "Chẩn đoán vấn đề",
-            "Sửa chữa và thay thế",
-            "Kiểm tra chất lượng",
-            "Bàn giao và xác nhận"
-        ],
-        buocCongViec: [
-            "1. Ghi nhận thông tin bảo hành",
-            "2. Kiểm tra điều kiện bảo hành",
-            "3. Chẩn đoán lỗi kỹ thuật",
-            "4. Lên kế hoạch sửa chữa",
-            "5. Thực hiện sửa chữa",
-            "6. Test và xác nhận",
-            "7. Bàn giao cho khách hàng"
-        ],
-        ketQuaDauRa: "Sản phẩm được sửa chữa, báo cáo bảo hành, xác nhận khách hàng."
+            {
+                title: "GIAI ĐOẠN 1: TIẾP NHẬN & XÁC MINH",
+                steps: [
+                    {
+                        title: "Bước 1: Tiếp nhận yêu cầu bảo hành",
+                        congViec: [
+                            "Nhận thông tin từ Sale",
+                            "Nhận thông tin từ khách hàng",
+                            "Nhận thông tin qua Hotline, Zalo hoặc Email",
+                            "Ghi nhận tên thiết bị",
+                            "Ghi nhận mô tả lỗi",
+                            "Ghi nhận thời gian phát sinh lỗi"
+                        ],
+                        ketQua: "Ticket bảo hành hoặc yêu cầu bảo hành được tạo"
+                    },
+                    {
+                        title: "Bước 2: Kiểm tra thông tin bảo hành",
+                        congViec: [
+                            "Kiểm tra thời gian bảo hành còn hay hết",
+                            "Kiểm tra thiết bị có thuộc phạm vi bảo hành không",
+                            "Xác định bảo hành miễn phí hay tính phí"
+                        ],
+                        ketQua: "Xác nhận tình trạng bảo hành"
+                    }
+                ]
+            },
+            {
+                title: "GIAI ĐOẠN 2: PHÂN TÍCH & XỬ LÝ",
+                steps: [
+                    {
+                        title: "Bước 3: Chẩn đoán lỗi",
+                        congViec: [
+                            "Phân tích lỗi phần mềm, ví dụ lỗi code hoặc firmware",
+                            "Phân tích lỗi phần cứng",
+                            "Phân tích lỗi do vận hành",
+                            "Remote kiểm tra nếu có thể",
+                            "Yêu cầu gửi thiết bị về nếu cần"
+                        ],
+                        ketQua: "Xác định nguyên nhân lỗi"
+                    },
+                    {
+                        title: "Bước 4: Quyết định phương án xử lý",
+                        congViec: [
+                            "Hướng dẫn khách tự xử lý nếu lỗi đơn giản",
+                            "Remote sửa lỗi nếu xử lý từ xa được",
+                            "Nhận hàng về sửa nếu cần kiểm tra trực tiếp",
+                            "Đổi mới thiết bị nếu lỗi nghiêm trọng hoặc không thể sửa"
+                        ],
+                        ketQua: "Chọn phương án xử lý phù hợp"
+                    },
+                    {
+                        title: "Bước 5: Sửa chữa / thay thế",
+                        congViec: [
+                            "Sửa lỗi code",
+                            "Thay linh kiện",
+                            "Update firmware",
+                            "Ghi log quá trình sửa chữa"
+                        ],
+                        ketQua: "Thiết bị đã được sửa xong"
+                    }
+                ]
+            },
+            {
+                title: "GIAI ĐOẠN 3: KIỂM TRA & BÀN GIAO",
+                steps: [
+                    {
+                        title: "Bước 6: Test lại thiết bị",
+                        congViec: [
+                            "Test IO",
+                            "Test chế độ Auto",
+                            "Test chế độ Manual",
+                            "Test các tình huống lỗi",
+                            "Đảm bảo thiết bị hoạt động ổn định"
+                        ],
+                        ketQua: "Thiết bị đạt yêu cầu trước khi trả khách"
+                    },
+                    {
+                        title: "Bước 7: Trả hàng / bàn giao",
+                        congViec: [
+                            "Gửi lại thiết bị cho khách hàng",
+                            "Hướng dẫn vận hành nếu cần",
+                            "Xác nhận hoàn tất quá trình bảo hành"
+                        ],
+                        ketQua: "Khách hàng nhận lại thiết bị"
+                    },
+                    {
+                        title: "Bước 8: Theo dõi sau bảo hành",
+                        congViec: [
+                            "Theo dõi thiết bị có phát sinh lỗi lại không",
+                            "Ghi nhận phản hồi từ khách hàng",
+                            "Tiếp tục hỗ trợ nếu cần"
+                        ],
+                        ketQua: "Đóng case bảo hành"
+                    }
+                ]
+            },
+            {
+                title: "LƯU Ý QUAN TRỌNG",
+                steps: [
+                    {
+                        title: "Các nguyên tắc quan trọng",
+                        congViec: [
+                            "Không xử lý khi chưa xác nhận tình trạng bảo hành",
+                            "Phải test kỹ trước khi trả hàng",
+                            "Phải ghi log toàn bộ quá trình xử lý",
+                            "Ưu tiên xử lý nhanh các case khách hàng đang sản xuất"
+                        ],
+                        ketQua: ""
+                    }
+                ]
+            },
+            {
+                title: "GỢI Ý LIÊN KẾT VỚI KPI",
+                steps: [
+                    {
+                        title: "Đánh giá hiệu suất",
+                        congViec: [
+                            "Quy trình này có thể dùng để đánh giá KPI 3: Hỗ trợ kỹ thuật",
+                            "Quy trình này cũng có thể liên quan đến KPI 2: Chất lượng công việc",
+                            "Thời gian phản hồi",
+                            "Thời gian xử lý",
+                            "Số case bảo hành hoàn thành",
+                            "Tỷ lệ xử lý thành công",
+                            "Số lỗi tái phát",
+                            "Phản hồi từ khách hàng"
+                        ],
+                        ketQua: ""
+                    }
+                ]
+            }
+        ]
     },
     "phoihop-muahang": {
-        title: "Quy trình phối hợp Mua hàng",
-        mucTieu: "Đảm bảo cung ứng vật tư đúng thời điểm, chất lượng và tiết kiệm chi phí.",
-        tongQuanFlow: "Yêu cầu → Tư vấn → Đặt hàng → Theo dõi → Nhận hàng",
+        title: "QUY TRÌNH 4: PHỐI HỢP MUA HÀNG",
+        mucTieu: [
+            "Đảm bảo cung ứng vật tư đúng tiến độ dự án",
+            "Đảm bảo đúng chủng loại, đúng kỹ thuật",
+            "Tối ưu chi phí mua hàng",
+            "Tránh thiếu vật tư làm chậm tiến độ"
+        ],
+        tongQuanFlow: "Yêu cầu vật tư → Kiểm tra tồn kho → Lập danh sách mua → Gửi mua hàng → Theo dõi đơn hàng → Nhận hàng → Kiểm tra → Cấp phát cho dự án",
         giaiDoan: [
-            "Xác định nhu cầu",
-            "Tư vấn và lựa chọn",
-            "Đặt hàng và hợp đồng",
-            "Theo dõi giao hàng",
-            "Nhận và kiểm tra"
-        ],
-        buocCongViec: [
-            "1. Xác định danh mục vật tư cần thiết",
-            "2. Tư vấn kỹ thuật với PMH",
-            "3. Lập bảng báo giá và so sánh",
-            "4. Đề xuất và phê duyệt",
-            "5. Đặt hàng và ký hợp đồng",
-            "6. Theo dõi tiến độ giao hàng",
-            "7. Nhận hàng và kiểm tra chất lượng"
-        ],
-        ketQuaDauRa: "Vật tư đạt chất lượng, hóa đơn, báo cáo nhập kho."
+            {
+                title: "GIAI ĐOẠN 1: XÁC ĐỊNH NHU CẦU",
+                steps: [
+                    {
+                        title: "Bước 1: Xác định nhu cầu vật tư",
+                        congViec: [
+                            "Dựa trên BOM của dự án",
+                            "Xác định đầy đủ thiết bị cần dùng",
+                            "Kiểm tra yêu cầu kỹ thuật từng loại"
+                        ],
+                        ketQua: "Danh sách vật tư cần sử dụng"
+                    },
+                    {
+                        title: "Bước 2: Kiểm tra tồn kho",
+                        congViec: [
+                            "Kiểm tra vật tư có sẵn trong kho",
+                            "Xác định vật tư còn dùng được",
+                            "Xác định vật tư cần mua thêm"
+                        ],
+                        ketQua: "Danh sách vật tư cần mua thực tế"
+                    }
+                ]
+            },
+            {
+                title: "GIAI ĐOẠN 2: MUA HÀNG",
+                steps: [
+                    {
+                        title: "Bước 3: Lập danh sách mua hàng",
+                        congViec: [
+                            "Tổng hợp vật tư cần mua",
+                            "Ghi rõ số lượng, mã hàng, thông số",
+                            "Ưu tiên vật tư theo tiến độ dự án"
+                        ],
+                        ketQua: "Danh sách mua hàng hoàn chỉnh"
+                    },
+                    {
+                        title: "Bước 4: Gửi yêu cầu mua hàng",
+                        congViec: [
+                            "Gửi danh sách cho bộ phận mua hàng",
+                            "Cung cấp thông tin kỹ thuật cần thiết",
+                            "Xác định deadline cần hàng"
+                        ],
+                        ketQua: "Yêu cầu mua hàng được gửi đi"
+                    },
+                    {
+                        title: "Bước 5: Theo dõi đơn hàng",
+                        congViec: [
+                            "Theo dõi tình trạng đặt hàng",
+                            "Kiểm soát leadtime",
+                            "Xử lý các trường hợp trễ hàng"
+                        ],
+                        ketQua: "Đảm bảo vật tư về đúng tiến độ"
+                    }
+                ]
+            },
+            {
+                title: "GIAI ĐOẠN 3: NHẬN HÀNG VÀ CẤP PHÁT",
+                steps: [
+                    {
+                        title: "Bước 6: Nhận hàng",
+                        congViec: [
+                            "Kiểm tra số lượng thực tế",
+                            "Đối chiếu với đơn đặt hàng",
+                            "Kiểm tra tình trạng hàng hóa"
+                        ],
+                        ketQua: "Xác nhận nhận hàng đầy đủ"
+                    },
+                    {
+                        title: "Bước 7: Kiểm tra chất lượng",
+                        congViec: [
+                            "Kiểm tra đúng mã hàng",
+                            "Kiểm tra đúng thông số kỹ thuật",
+                            "Phát hiện lỗi hoặc sai hàng nếu có"
+                        ],
+                        ketQua: "Đảm bảo vật tư đạt yêu cầu"
+                    },
+                    {
+                        title: "Bước 8: Cấp phát cho dự án",
+                        congViec: [
+                            "Cấp vật tư cho team triển khai",
+                            "Ghi nhận xuất kho",
+                            "Đảm bảo đúng vật tư và đúng người nhận"
+                        ],
+                        ketQua: "Vật tư được đưa vào sử dụng trong dự án"
+                    }
+                ]
+            },
+            {
+                title: "LƯU Ý QUAN TRỌNG",
+                steps: [
+                    {
+                        title: "Các nguyên tắc quan trọng",
+                        congViec: [
+                            "Không mua khi chưa có BOM rõ ràng",
+                            "Luôn kiểm tra tồn kho trước khi mua",
+                            "Kiểm soát leadtime để tránh trễ tiến độ",
+                            "Kiểm tra kỹ chất lượng trước khi sử dụng",
+                            "Ghi nhận đầy đủ nhập và xuất vật tư"
+                        ],
+                        ketQua: ""
+                    }
+                ]
+            }
+        ]
     }
 };
 

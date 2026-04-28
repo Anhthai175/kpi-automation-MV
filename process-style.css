@@ -1,3 +1,154 @@
+/* Giao diện Menu Quy trình */
+
+.quy-trinh-menu {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+
+.quy-trinh-menu h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.menu-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.menu-item:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(102, 126, 234, 0.3);
+  border-color: #667eea;
+}
+
+.menu-item:hover::before {
+  transform: scaleX(1);
+}
+
+.menu-item h3 {
+  color: #2d3748;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.menu-item p {
+  color: #718096;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  min-height: 48px;
+}
+
+.menu-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.menu-item:hover .menu-icon {
+  animation: float 0.8s ease-in-out infinite;
+}
+
+.menu-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.menu-btn:active {
+  transform: scale(0.98);
+}
+
+.quy-trinh-actions {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(229, 62, 62, 0.4);
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
+
 /* Giao diện Quy trình Triển khai Dự án */
 
 .process-detail-page {
@@ -199,7 +350,138 @@
   margin-top: 50px;
 }
 
+/* Giao diện Chi tiết Quy trình */
+
+.quy-trinh-detail {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  padding: 3rem 1.5rem;
+  border-radius: 15px;
+  min-height: 60vh;
+}
+
+.quy-trinh-detail h2 {
+  color: #2d3748;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.quy-trinh-detail-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #667eea;
+}
+
+.quy-trinh-detail-section h3 {
+  color: #667eea;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.8rem;
+}
+
+.quy-trinh-detail-section p {
+  color: #4a5568;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+}
+
+.quy-trinh-detail-section ul,
+.quy-trinh-detail-section ol {
+  color: #4a5568;
+  line-height: 1.8;
+  margin-left: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.quy-trinh-detail-section li {
+  margin-bottom: 0.6rem;
+}
+
+.quy-trinh-step-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fc 100%);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+}
+
+.quy-trinh-step-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.2);
+}
+
+.quy-trinh-step-card h4 {
+  color: #2d3748;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.step-result {
+  background: linear-gradient(135deg, #f0f4ff 0%, #f9f7ff 100%);
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #2d3748;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 0.8rem;
+}
+
 @media (max-width: 768px) {
+  .quy-trinh-menu {
+    padding: 2rem 1rem;
+  }
+
+  .quy-trinh-menu h2 {
+    font-size: 1.6rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .menu-item {
+    padding: 1.5rem;
+  }
+
+  .menu-item h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu-item p {
+    font-size: 0.9rem;
+  }
+
+  .menu-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .quy-trinh-detail {
+    padding: 1.5rem;
+  }
+
+  .quy-trinh-detail h2 {
+    font-size: 1.6rem;
+  }
+
+  .quy-trinh-detail-section {
+    padding: 1.5rem;
+  }
+
+  .quy-trinh-detail-section h3 {
+    font-size: 1.1rem;
+  }
+
   .process-detail-page {
     padding: 20px 15px 50px;
   }
